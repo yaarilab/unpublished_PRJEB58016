@@ -1576,7 +1576,7 @@ split_col = params.split_constant.split_col
 #!/bin/sh 
 mkdir heavy
 mkdir light
-awk '/^>/{f=""; split(\$0,b,"${split_col}="); if(substr(b[2],1,3)=="IGK"){f="light/${name}_IGK.fasta"} else {if(substr(b[2],1,3)=="IGL"){f="light/${name}_IGL.fasta"} else {f="heavy/${name}.fasta"}}; print \$0 > f ; next } {print \$0 > f} ' ${reads}
+awk '/^>/{f=""; split(\$0,b,"${split_col}="); if(substr(b[2],2,3)=="IGK"){f="light/${name}_IGK.fasta"} else {if(substr(b[2],2,3)=="IGL"){f="light/${name}_IGL.fasta"} else {f="heavy/${name}.fasta"}}; print \$0 > f ; next } {print \$0 > f} ' ${reads}
 """
 
 }
