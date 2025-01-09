@@ -1560,14 +1560,16 @@ SplitSeq.py group -s ${readArray} -f ${field} ${num} ${fasta} >> out_${readArray
 
 process split_constant {
 
-publishDir params.outdir, mode: 'copy', saveAs: {filename -> if (filename =~ /light\/.*.fasta$/) "reads/$filename"}
+publishDir params.outdir, mode: 'copy', saveAs: {filename -> if (filename =~ /light\/.*_IGK.fasta$/) "reads/$filename"}
 publishDir params.outdir, mode: 'copy', saveAs: {filename -> if (filename =~ /heavy\/.*.fasta$/) "reads/$filename"}
+publishDir params.outdir, mode: 'copy', saveAs: {filename -> if (filename =~ /light\/.*_IGL.fasta$/) "reads/$filename"}
 input:
  set val(name),file(reads) from g_86_fastaFile0_g_72
 
 output:
- set name, file("light/*.fasta") optional true  into g_72_fastaFile00
+ set name, file("light/*_IGK.fasta") optional true  into g_72_fastaFile00
  set name, file("heavy/*.fasta") optional true  into g_72_fastaFile11
+ set name, file("light/*_IGL.fasta") optional true  into g_72_fastaFile22
 
 script:
 split_col = params.split_constant.split_col
